@@ -4,6 +4,7 @@ This repository (`abucalip/discair-macos`) holds the native macOS client for Dis
 
 ## Contracts & shared references
 
+- Architecture map: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) (read before opening source or grepping)
 - Client contract: [`docs/contracts/MACOS_CLIENT_CONTRACT.md`](docs/contracts/MACOS_CLIENT_CONTRACT.md)
 - Design notes: [`DESIGN.md`](DESIGN.md)
 - Shared server API contracts (`SERVER_V2_CONTRACT.md`, `PLAYLIST_INBOX_CONTRACT.md`, `RADIO_PLAYBACK_CONTRACT.md`, `SEARCH_CONTRACT.md`) live in [`abucalip/navi-librarian`](https://github.com/abucalip/navi-librarian/tree/main/docs/contracts).
