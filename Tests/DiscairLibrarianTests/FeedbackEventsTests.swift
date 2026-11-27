@@ -4,7 +4,7 @@ import DiscairCore
 @testable import DiscairLibrarian
 
 private func feedbackFixture(_ name: String, file: String = #filePath) throws -> [String: Any] {
-    let url = URL(fileURLWithPath: file).deletingLastPathComponent().appending(path: "../../../intelligence/contract-fixtures/\(name).json").standardized
+    let url = URL(fileURLWithPath: file).deletingLastPathComponent().appending(path: "../Fixtures/contract-fixtures/\(name).json").standardized
     return try JSONSerialization.jsonObject(with: Data(contentsOf: url)) as! [String: Any]
 }
 

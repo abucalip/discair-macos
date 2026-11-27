@@ -14,7 +14,7 @@ private struct StubTransport: HTTPTransport {
 }
 
 private func fixture(_ name: String, file: String = #filePath) throws -> Data {
-    let url = URL(fileURLWithPath: file).deletingLastPathComponent().appending(path: "../../../intelligence/contract-fixtures/\(name).json").standardized
+    let url = URL(fileURLWithPath: file).deletingLastPathComponent().appending(path: "../Fixtures/contract-fixtures/\(name).json").standardized
     let object = try JSONSerialization.jsonObject(with: Data(contentsOf: url)) as! [String: Any]
     return try JSONSerialization.data(withJSONObject: object["response"]!)
 }
