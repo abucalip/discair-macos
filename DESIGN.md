@@ -1,6 +1,6 @@
 # Discair for Mac: design
 
-Skeleton from [`docs/contracts/MACOS_CLIENT_CONTRACT.md`](../docs/contracts/MACOS_CLIENT_CONTRACT.md) sections 2, 4 and 4.1. Mockups are the spec: `docs/design/macos-m3/mockups.html` (round 1) and `docs/design/macos-m4/mockups.html` (round 2). Nothing here is built yet (UI starts in M4). Each element below is filled in, with reasons, as it is built.
+Skeleton from [`docs/contracts/MACOS_CLIENT_CONTRACT.md`](docs/contracts/MACOS_CLIENT_CONTRACT.md) sections 2, 4 and 4.1. Mockups are the spec: `docs/design/macos-m3/mockups.html` (round 1) and `docs/design/macos-m4/mockups.html` (round 2). Nothing here is built yet (UI starts in M4). Each element below is filled in, with reasons, as it is built.
 
 ## Themes
 
@@ -490,7 +490,7 @@ Mockups: `docs/design/macos-player-refinements/mockups.html`. Owner choices: art
 
 ## Radio (stage 2): choices and rules (S2-0, 2026-11-13)
 
-Internet radio on the Mac, built from the owner's choices. Mockups (the spec): [`docs/design/macos-radio/mockups.html`](../docs/design/macos-radio/mockups.html), with `cupertino-radio.css` for the colour roles and components. Rules: [`docs/contracts/RADIO_PLAYBACK_CONTRACT.md`](../docs/contracts/RADIO_PLAYBACK_CONTRACT.md) section 5; slices: [`docs/plans/RADIO_PLAYBACK_PROPOSAL.md`](../docs/plans/RADIO_PLAYBACK_PROPOSAL.md), "Stage 2 detailed plan".
+Internet radio on the Mac, built from the owner's choices. Mockups (the spec): [`docs/design/macos-radio/mockups.html`](https://github.com/abucalip/navi-librarian/blob/main/docs/design/macos-radio/mockups.html), with `cupertino-radio.css` for the colour roles and components. Rules: [`docs/contracts/RADIO_PLAYBACK_CONTRACT.md`](https://github.com/abucalip/navi-librarian/blob/main/docs/contracts/RADIO_PLAYBACK_CONTRACT.md) section 5; slices: [`docs/plans/RADIO_PLAYBACK_PROPOSAL.md`](https://github.com/abucalip/navi-librarian/blob/main/docs/plans/RADIO_PLAYBACK_PROPOSAL.md), "Stage 2 detailed plan".
 
 - **Chosen:** A2 Tuner page (station list left, On Air panel right), B2 level meter in the bar, C1 song-first Now Playing, D2 menu bar item with popover, E1 ⌘1 to ⌘9 for the first nine favourites, E5 Edit Tags on the Mac, E7 radio card on Home. Not built: the other options drawn in the mockups, and no Love button.
 - **One theme:** Radio is drawn once, in Cupertino Day and Night, through `CU` roles only. No accent hex in a view; the accent follows the hue slider.
