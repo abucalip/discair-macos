@@ -6,7 +6,7 @@ import Testing
 
 func inboxFixture(_ name: String, file: String = #filePath) throws -> [String: Any] {
     let url = URL(fileURLWithPath: file).deletingLastPathComponent()
-        .appending(path: "../../../tests/fixtures/listenbrainz_inbox_responses.json").standardized
+        .appending(path: "../Fixtures/listenbrainz_inbox_responses.json").standardized
     let fixtures = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: [String: Any]])
     return try #require(fixtures[name])
 }

@@ -11,7 +11,7 @@ import Testing
 struct CupertinoPagesRenderTests {
     /// The server's own taste body with a saved listening context, from the contract fixture (the morning-vs-night contrast is stated).
     static func tasteResponse() throws -> TasteResponse {
-        let url = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appending(path: "../../../intelligence/contract-fixtures/taste_context_contrast.json").standardized
+        let url = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appending(path: "../Fixtures/contract-fixtures/taste_context_contrast.json").standardized
         let object = try JSONSerialization.jsonObject(with: Data(contentsOf: url)) as! [String: Any]
         return try JSONDecoder().decode(TasteResponse.self, from: JSONSerialization.data(withJSONObject: object["response"]!))
     }

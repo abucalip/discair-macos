@@ -1,0 +1,40 @@
+{
+  "request": "GET /api/capabilities",
+  "response": {
+    "contract_version": 1,
+    "cursor": 2,
+    "data_versions": {
+      "health": 1,
+      "unresolved": 1
+    },
+    "features": {
+      "insights": {
+        "available": false,
+        "data_version": 0,
+        "reason": "not_populated",
+        "resource": "insights"
+      },
+      "library_health": {
+        "available": true,
+        "data_version": 1,
+        "resource": "health"
+      },
+      "paths": {
+        "available": false,
+        "data_version": 0,
+        "reason": "not_populated",
+        "resource": "musicbrainz_slice"
+      },
+      "unresolved_queue": {
+        "available": true,
+        "data_version": 1,
+        "resource": "unresolved"
+      }
+    },
+    "generation": 1,
+    "graph_coverage": "partial",
+    "listenbrainz_connected": true,
+    "schema_version": 8,
+    "sonic_available": false
+  }
+}

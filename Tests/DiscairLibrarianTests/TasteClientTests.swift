@@ -5,7 +5,7 @@ import DiscairCore
 
 /// Reads the server's own `intelligence/contract-fixtures/taste_*.json`, so the app is tested against what the server sends.
 private func tasteBody(_ name: String, file: String = #filePath) throws -> Data {
-    let url = URL(fileURLWithPath: file).deletingLastPathComponent().appending(path: "../../../intelligence/contract-fixtures/\(name).json").standardized
+    let url = URL(fileURLWithPath: file).deletingLastPathComponent().appending(path: "../Fixtures/contract-fixtures/\(name).json").standardized
     let object = try JSONSerialization.jsonObject(with: Data(contentsOf: url)) as! [String: Any]
     return try JSONSerialization.data(withJSONObject: object["response"]!)
 }
