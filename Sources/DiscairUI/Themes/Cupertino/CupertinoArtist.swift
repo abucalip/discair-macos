@@ -1,4 +1,5 @@
 import SwiftUI
+import DiscairLibrarian
 
 /// Artist: a banner (colour field from the artwork, until real blurred art arrives in M5) with the bold sans name,
 /// Top Songs, Albums with the missing ones dashed and a Get button. Mockup: `R.cupertino.artist`.
@@ -158,8 +159,14 @@ struct CupertinoArtistBanner: View {
                             }
                             Button { } label: { Label("Shuffle", systemImage: "shuffle") }
                                 .buttonStyle(CapsuleButtonStyle(translucent: true))
-                            Button { } label: { Label("Radio", systemImage: "dot.radiowaves.left.and.right") }
-                                .buttonStyle(CapsuleButtonStyle(translucent: true))
+                            if let mbid = state.selectedArtist.musicBrainzID, UUID(uuidString: mbid) != nil {
+                                Menu {
+                                    Button("Start Artist Radio") { state.radioMix.open(.init(kind: .artist, artistMBID: mbid)) }
+                                    Button("Discovery Mix") { state.radioMix.open(.init(kind: .discovery, artistMBID: mbid)) }
+                                } label: { Label("Artist Radio", systemImage: "music.note.list") }
+                                .menuStyle(.borderlessButton).fixedSize()
+                                .disabled(!state.radioMix.isConnected)
+                            }
                             if state.canShowArtistPaths {
                                 Button { state.showArtistPaths() } label: { Label("Paths", systemImage: "point.topleft.down.to.point.bottomright.curvepath") }
                                     .buttonStyle(CapsuleButtonStyle(translucent: true))

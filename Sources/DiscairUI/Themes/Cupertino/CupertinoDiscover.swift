@@ -21,6 +21,7 @@ struct CupertinoDiscover: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Discover").font(CU.title(34)).padding(.top, 4).accessibilityAddTraits(.isHeader)
                 CupertinoInboxShelf(state: state)
+                CupertinoMixShelf(state: state)
                 HStack(spacing: 8) {
                     ForEach(DiscoveryModel.Kind.allCases) { k in
                         let on = model.selected == k

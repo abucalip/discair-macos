@@ -94,6 +94,7 @@ public final class AppState {
     public let acquisition: AcquisitionModel
     public let discovery = DiscoveryModel()
     let playlistInbox = PlaylistInboxModel()
+    let radioMix = RadioMixModel()
     /// Internet radio stations, their live titles and the tag filter.
     public let stations: StationsModel
     /// What Download sent for each heard song, shared by every place the live song is shown (S2-3 item 2).
@@ -221,6 +222,7 @@ public final class AppState {
             guard let librarian = await MainActor.run(body: { session?.librarian }) else { return .unavailable }
             return (try? await librarian.songPeaks(id: songID)) ?? .unavailable
         }
+        session?.onConnectionReset = { [weak self] in self?.radioMix.configure(librarian: nil) }
         session?.onConnected = { [weak self] in
             self?.share.startIfNeeded()
             // The refresh can take about a minute on a long history, so it never holds up the library load.
@@ -247,6 +249,7 @@ public final class AppState {
         acquisition.configure(librarian: session.librarian)
         discovery.configure(librarian: session.librarian)
         playlistInbox.configure(librarian: session.librarian)
+        radioMix.configure(librarian: session.librarian)
         let stationHistoryScope = session.activeProfile.map { "\($0.id.uuidString)|\(session.navidromeUsername ?? "")" }
         stations.configure(source: session.librarian, historyScope: stationHistoryScope)
         radioDownloads.configure(source: session.librarian)

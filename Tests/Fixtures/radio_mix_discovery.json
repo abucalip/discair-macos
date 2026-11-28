@@ -1,0 +1,65 @@
+{
+  "state": "ready",
+  "kind": "discovery",
+  "title": "Discair \u00b7 Test mix",
+  "preview_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "seed": {
+    "kind": "tag",
+    "value": "jazz"
+  },
+  "total_count": 5,
+  "owned_count": 2,
+  "index_state": "fresh",
+  "tracks": [
+    {
+      "position": 0,
+      "recording_mbid": null,
+      "title": "One",
+      "artist": "Band",
+      "album": "Album",
+      "duration_ms": 180000,
+      "match_state": "owned",
+      "song_id": "one"
+    },
+    {
+      "position": 1,
+      "recording_mbid": null,
+      "title": "Two",
+      "artist": "Band",
+      "album": null,
+      "duration_ms": 180000,
+      "match_state": "missing",
+      "song_id": null
+    },
+    {
+      "position": 2,
+      "recording_mbid": null,
+      "title": "One",
+      "artist": "Band",
+      "album": "Album",
+      "duration_ms": 180000,
+      "match_state": "owned",
+      "song_id": "one"
+    },
+    {
+      "position": 3,
+      "recording_mbid": null,
+      "title": "Version",
+      "artist": "Band",
+      "album": "Album",
+      "duration_ms": 180000,
+      "match_state": "ambiguous",
+      "song_id": null
+    },
+    {
+      "position": 4,
+      "recording_mbid": null,
+      "title": "Unknown",
+      "artist": "Band",
+      "album": "Album",
+      "duration_ms": 180000,
+      "match_state": null,
+      "song_id": null
+    }
+  ]
+}

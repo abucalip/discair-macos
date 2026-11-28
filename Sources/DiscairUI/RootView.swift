@@ -32,6 +32,9 @@ public struct RootView: View {
         .overlay { PipelineDockView(state: state) { pipelineCardHeight = $0 } }
         .modifier(CommandPaletteOverlay(state: state))
         .sheet(item: $state.sonicPath) { SonicPathSheet(state: state, model: $0) }
+        .sheet(isPresented: Binding(get: { state.radioMix.isPresented }, set: { if !$0 { state.radioMix.close() } })) {
+            CupertinoRadioMix(state: state)
+        }
         .sheet(item: $state.paths) { PathsSheet(state: state, model: $0) }
         .preferredColorScheme(state.appearance.mode == .night ? .dark : .light)
         .environment(\.artwork, state.artwork)
