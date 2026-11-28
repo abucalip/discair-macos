@@ -212,7 +212,7 @@ public final class LibraryModel {
         songs = []; songsLoaded = false; songsHaveMore = false; songsError = nil   // never show sample songs next to a live library
         recent = newest.enumerated().map { Self.item($0.element, index: $0.offset) }
         albums = first.enumerated().map { Self.item($0.element, index: 1000 + $0.offset) }
-        artists = a.enumerated().map { ArtistItem(id: $0.offset, remoteID: $0.element.id, name: $0.element.name, albumCount: $0.element.albumCount ?? 0) }
+        artists = a.enumerated().map { ArtistItem(id: $0.offset, remoteID: $0.element.id, name: $0.element.name, albumCount: $0.element.albumCount ?? 0, musicBrainzID: $0.element.musicBrainzId) }
         let owned = Set((newest + first).map { Self.key($0.artist ?? "", $0.name) })
         allPicks = picks.enumerated().map { Self.item($0.element, index: 5000 + $0.offset) }
             .filter { !owned.contains(Self.key($0.artist, $0.title)) }

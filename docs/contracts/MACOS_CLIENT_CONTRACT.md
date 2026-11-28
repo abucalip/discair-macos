@@ -76,6 +76,12 @@ Discover’s Playlist Inbox uses the authenticated [Inbox list and edition GETs]
 
 Inbox Download and Retry use the authenticated edition-and-position POST in the [Inbox contract](PLAYLIST_INBOX_CONTRACT.md), without sending editable track metadata. Rows show server refusal messages and acquisition progress matched by the server’s `artist` and synthetic `job_album`, including albumless source rows. Existing in-progress and imported results remain requested even when `ok` is false. Imported tracks wait for a confirmed owned-index match before entering playback. Shared acquisition updates refresh the visible edition; Refresh status also rechecks ownership and the shelf counts after a later Navidrome scan. No additional polling timer is added.
 
+LB-21 uses the stored [radio mix API](https://github.com/abucalip/navi-librarian/blob/main/docs/contracts/RADIO_MIX_ACTIONS_CONTRACT.md), separate from internet Radio:
+
+- Artist Radio starts ordered, confirmed-owned playback from an artist MusicBrainz ID; Familiar/Explore/Deep cuts regenerate explicitly. Empty, unknown and failed results preserve the queue.
+- Discover accepts a library artist or tag and Easy/Medium/Hard mode. All occurrences remain visible; only owned rows play and confirmed missing rows download/retry by preview ID and position.
+- Shared acquisition updates and Refresh status recheck ownership; import alone never enables playback. Closing, regenerating and connection changes discard outstanding responses.
+
 ## 6. Desktop features (approved by the owner)
 
 1. **Library table:** sortable columns (year, rating, bitrate, format, added, plays, last played, missing MBID).

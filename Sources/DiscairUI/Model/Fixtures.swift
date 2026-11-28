@@ -44,6 +44,7 @@ public struct ArtistItem: Identifiable, Equatable, Sendable {
     public var remoteID: String? = nil
     public let name: String
     public let albumCount: Int
+    public var musicBrainzID: String? = nil
     /// First letter for the A-Z index ("#" for anything that is not a letter).
     public var letter: String {
         guard let c = name.folding(options: .diacriticInsensitive, locale: nil).uppercased().first, c.isLetter else { return "#" }

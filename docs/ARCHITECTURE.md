@@ -19,6 +19,7 @@ Paths are relative to the repository root.
 | --- | --- |
 | Root shell and render modes | `Sources/DiscairUI/RootView.swift`, `Sources/DiscairUI/RenderMode.swift` |
 | Window chrome, navigation, and player bar | `Sources/DiscairUI/Chrome/` |
+| Artist Radio and Discovery Mix | `Sources/DiscairLibrarian/RadioMix.swift`, `Sources/DiscairUI/Model/RadioMixModel.swift`, `Sources/DiscairUI/Themes/Cupertino/CupertinoRadioMix.swift`; focused tests: `RadioMixTests` |
 | View models and state | `Sources/DiscairUI/Model/` |
 | Themes and Cupertino presentation | `Sources/DiscairUI/Themes/` |
 

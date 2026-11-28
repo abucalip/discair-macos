@@ -31,6 +31,33 @@ private func makeSession(prober: ProbeOutcome = .reachable, secrets: InMemorySec
 
 @MainActor
 struct SessionModelTests {
+    @Test func connectionAndCredentialChangesSynchronouslyInvalidateScopedWork() async throws {
+        let (session, _) = makeSession()
+        var resets = 0
+        session.onConnectionReset = { resets += 1 }
+        await session.connect()
+        #expect(resets == 1)
+        try session.saveLogin(.navidrome, username: "owner", password: "fixture")
+        #expect(resets == 2)
+        try session.removeLogin(.librarian)
+        #expect(resets == 3)
+        try session.saveLogin(.listenbrainz, username: "owner", password: "")
+        #expect(resets == 3)
+    }
+
+    @Test func deletingTheActiveProfileInvalidatesScopedWork() async throws {
+        let (session, _) = makeSession()
+        try session.addProfile(name: "Home", librarianURL: "http://192.168.1.87:8686", navidromeURL: "http://192.168.1.87:4533")
+        try session.saveLogin(.navidrome, username: "owner", password: "fixture")
+        await session.connect()
+        let id = try #require(session.activeProfile?.id)
+        var reset = false
+        session.onConnectionReset = { reset = true }
+        try session.removeProfile(id: id)
+        #expect(reset)
+        #expect(session.activeProfile == nil)
+    }
+
     @Test func profilesPersistAcrossLaunches() throws {
         let (a, url) = makeSession()
         try a.addProfile(name: "Home", librarianURL: "http://192.168.1.87:8686", navidromeURL: "http://192.168.1.87:4533")

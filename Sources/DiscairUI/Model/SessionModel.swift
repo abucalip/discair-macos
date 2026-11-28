@@ -34,6 +34,9 @@ public final class SessionModel {
     /// Called after a successful connect (the app uses it to load the library). Not called on failure.
     public var onConnected: (@MainActor () async -> Void)?
 
+    /// Invalidates account-scoped work synchronously before a connection or login changes.
+    public var onConnectionReset: (() -> Void)?
+
     private let store: ProfileStore
     /// Shared with the SMB model so the app reads the Keychain through one object.
     public let secrets: any SecretStore
@@ -84,7 +87,10 @@ public final class SessionModel {
         list.remove(id: id)
         try store.save(list)
         profiles = list
-        if case .connected(let p, _) = status, p.id == id { status = .notConfigured; navidrome = nil; librarian = nil }
+        if case .connected(let p, _) = status, p.id == id {
+            onConnectionReset?()
+            status = .notConfigured; navidrome = nil; librarian = nil
+        }
     }
 
     /// `nil` goes back to automatic selection (LAN first, then Tailscale).
@@ -102,6 +108,7 @@ public final class SessionModel {
         // A ListenBrainz login is a username with an optional token; the others need a password.
         guard !user.isEmpty, !password.isEmpty || kind == .listenbrainz else { throw SettingsError.emptyLogin }
         try secrets.save(Credential(username: user, password: password), for: kind)
+        if kind != .listenbrainz { onConnectionReset?() }
         refreshLogins()
     }
 
@@ -110,6 +117,7 @@ public final class SessionModel {
 
     public func removeLogin(_ kind: SecretKind) throws {
         try secrets.delete(kind)
+        if kind != .listenbrainz { onConnectionReset?() }
         refreshLogins()
         if kind == .navidrome { onNavidromeSignOut?() }
     }
@@ -136,6 +144,7 @@ public final class SessionModel {
     public var onConnectFailed: (@MainActor (DiscairError) async -> Void)?
 
     private func attemptConnect() async {
+        onConnectionReset?()
         guard !profiles.profiles.isEmpty else { status = .notConfigured; return }
         status = .connecting
         navidrome = nil; librarian = nil; librarianNote = nil
